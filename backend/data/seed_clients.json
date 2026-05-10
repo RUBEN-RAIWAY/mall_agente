@@ -1,0 +1,188 @@
+[
+  {
+    "client_id": "client_001",
+    "nombres": "Carlos Alberto Pérez Gómez",
+    "fecha_nacimiento": "1992-05-14",
+    "genero": "M",
+    "estado_civil": "Soltero",
+    "altura_cm": 173,
+    "talla_ropa": "32",
+    "talla_calzado": 41,
+    "email": "carlos.perez@email.com",
+    "telefono": "+51987654321",
+    "preferencias": {
+      "categorias": ["ropa_deportiva", "cine", "discotecas"],
+      "comida": ["hamburguesas", "parrillas"],
+      "cine": ["accion", "ciencia_ficcion"],
+      "colores": ["amarillo", "azul", "marron"],
+      "musica": ["rock", "salsa", "balada"]
+    },
+    "comportamiento": {
+      "dias_frecuentes": ["Viernes", "Sabado"],
+      "rango_horario": "18:00-23:00",
+      "usa_estacionamiento": true
+    },
+    "transacciones": {
+      "ticket_promedio_usd": 45.50,
+      "bancos_asociados": ["BCP", "Interbank"],
+      "metodo_pago_principal": "tarjeta_credito",
+      "ultimas_tiendas": ["Nike", "Cineplanet", "Rustica"]
+    },
+    "resumen_historia": "Por lo general los sábados va al cine con sus hijos a eso de las 18:00 horas, le gusta tomar pisco sour."
+  },
+  {
+    "client_id": "client_002",
+    "nombres": "María Fernanda López Silva",
+    "fecha_nacimiento": "1985-08-22",
+    "genero": "F",
+    "estado_civil": "Casada",
+    "altura_cm": 162,
+    "talla_ropa": "M",
+    "talla_calzado": 37,
+    "email": "mfernanda.ls@email.com",
+    "telefono": "+51998877665",
+    "preferencias": {
+      "categorias": ["ropa_casual", "supermercado", "hogar"],
+      "comida": ["italiana", "postres"],
+      "cine": ["romance", "drama"],
+      "colores": ["verde", "blanco"],
+      "musica": ["pop", "balada"]
+    },
+    "comportamiento": {
+      "dias_frecuentes": ["Domingo"],
+      "rango_horario": "10:00-14:00",
+      "usa_estacionamiento": true
+    },
+    "transacciones": {
+      "ticket_promedio_usd": 120.00,
+      "bancos_asociados": ["BBVA", "Scotiabank"],
+      "metodo_pago_principal": "tarjeta_debito",
+      "ultimas_tiendas": ["Plaza Vea", "Zara", "Starbucks"]
+    },
+    "resumen_historia": "Suele visitar el mall los domingos por la mañana para hacer compras de la semana y luego desayunar en familia."
+  },
+  {
+    "client_id": "client_003",
+    "nombres": "Jorge Luis Ramírez Vargas",
+    "fecha_nacimiento": "1998-11-05",
+    "genero": "M",
+    "estado_civil": "Soltero",
+    "altura_cm": 178,
+    "talla_ropa": "L",
+    "talla_calzado": 43,
+    "email": "jorge.ramirez98@email.com",
+    "telefono": "+51912345678",
+    "preferencias": {
+      "categorias": ["tecnologia", "zapatillas", "fast_food"],
+      "comida": ["pizza", "tacos"],
+      "cine": ["ciencia_ficcion", "terror"],
+      "colores": ["negro", "rojo"],
+      "musica": ["electronica", "rock"]
+    },
+    "comportamiento": {
+      "dias_frecuentes": ["Lunes", "Jueves"],
+      "rango_horario": "15:00-19:00",
+      "usa_estacionamiento": false
+    },
+    "transacciones": {
+      "ticket_promedio_usd": 65.20,
+      "bancos_asociados": ["BCP"],
+      "metodo_pago_principal": "billetera_digital",
+      "ultimas_tiendas": ["Coolbox", "Adidas", "KFC"]
+    },
+    "resumen_historia": "Viene frecuentemente a buscar gadgets de tecnología y ropa urbana. Siempre paga rápidamente desde su celular."
+  },
+  {
+    "client_id": "client_004",
+    "nombres": "Lucía Mendiola Castillo",
+    "fecha_nacimiento": "1976-03-18",
+    "genero": "F",
+    "estado_civil": "Divorciada",
+    "altura_cm": 168,
+    "talla_ropa": "S",
+    "talla_calzado": 38,
+    "email": "lucia.mendiola@email.com",
+    "telefono": "+51923456789",
+    "preferencias": {
+      "categorias": ["ropa_elegante", "joyeria", "cafeterias"],
+      "comida": ["gourmet", "sushi"],
+      "cine": ["documental", "comedia"],
+      "colores": ["beige", "negro", "dorado"],
+      "musica": ["jazz", "clasica"]
+    },
+    "comportamiento": {
+      "dias_frecuentes": ["Miercoles", "Viernes"],
+      "rango_horario": "16:00-20:00",
+      "usa_estacionamiento": true
+    },
+    "transacciones": {
+      "ticket_promedio_usd": 210.00,
+      "bancos_asociados": ["Interbank", "Diners Club"],
+      "metodo_pago_principal": "tarjeta_credito",
+      "ultimas_tiendas": ["Swarovski", "Hugo Boss", "Juan Valdez"]
+    },
+    "resumen_historia": "Prefiere las visitas entre semana por la tarde para evitar multitudes. Le gusta tomar un café largo mientras lee."
+  },
+  {
+    "client_id": "client_005",
+    "nombres": "Roberto Carlos Fernández Ruiz",
+    "fecha_nacimiento": "1965-12-10",
+    "genero": "M",
+    "estado_civil": "Casado",
+    "altura_cm": 170,
+    "talla_ropa": "XL",
+    "talla_calzado": 40,
+    "email": "roberto.fernandez@email.com",
+    "telefono": "+51934567890",
+    "preferencias": {
+      "categorias": ["ferreteria", "bancos", "ropa_de_vestir"],
+      "comida": ["comida_criolla", "pescados_y_mariscos"],
+      "cine": ["accion", "western"],
+      "colores": ["azul", "gris"],
+      "musica": ["salsa", "boleros"]
+    },
+    "comportamiento": {
+      "dias_frecuentes": ["Sabado"],
+      "rango_horario": "09:00-13:00",
+      "usa_estacionamiento": true
+    },
+    "transacciones": {
+      "ticket_promedio_usd": 85.00,
+      "bancos_asociados": ["BanBif", "BCP"],
+      "metodo_pago_principal": "efectivo",
+      "ultimas_tiendas": ["Promart", "Banco BCP", "Tanta"]
+    },
+    "resumen_historia": "Visita recurrentemente la ferretería los fines de semana temprano para proyectos de casa, luego realiza trámites bancarios y almuerza."
+  },
+  {
+    "client_id": "client_006",
+    "nombres": "Camila Andrea Torres Mendoza",
+    "fecha_nacimiento": "2002-01-30",
+    "genero": "F",
+    "estado_civil": "Soltera",
+    "altura_cm": 158,
+    "talla_ropa": "XS",
+    "talla_calzado": 36,
+    "email": "cami.torres02@email.com",
+    "telefono": "+51945678901",
+    "preferencias": {
+      "categorias": ["maquillaje", "discotecas", "accesorios"],
+      "comida": ["pollo_a_la_brasa", "helados"],
+      "cine": ["comedia_romantica", "animacion"],
+      "colores": ["rosado", "morado"],
+      "musica": ["reggaeton", "pop_latino"]
+    },
+    "comportamiento": {
+      "dias_frecuentes": ["Viernes", "Sabado"],
+      "rango_horario": "21:00-02:00",
+      "usa_estacionamiento": false
+    },
+    "transacciones": {
+      "ticket_promedio_usd": 40.00,
+      "bancos_asociados": ["Interbank"],
+      "metodo_pago_principal": "tarjeta_debito",
+      "ultimas_tiendas": ["MAC Cosmetics", "Discoteca Aura", "Pinkberry"]
+    },
+    "resumen_historia": "Asiste a la discoteca casi todos los fines de semana con su grupo de amigas. Siempre se detiene a comprar algo de maquillaje o comer un postre antes."
+  }
+]
