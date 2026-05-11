@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { fetchConversations, fetchClientProfile, deleteConversation, streamChat, sendChatMessage } from '../api'
+import { fetchConversations, fetchClientProfile, fetchConversationDetail, deleteConversation, streamChat, sendChatMessage } from '../api'
 import Sidebar from './Sidebar'
 import MessageBubble from './MessageBubble'
 
@@ -53,11 +53,8 @@ export default function ChatView({ client, onBack }) {
     setCurrentConvoId(convoId)
     setMessages([])
     try {
-      const res = await fetch(`/api/clients/${client.client_id}/conversations/${convoId}`)
-      if (res.ok) {
-        const data = await res.json()
-        setMessages(data.messages || [])
-      }
+      const data = await fetchConversationDetail(client.client_id, convoId)
+      setMessages(data.messages || [])
     } catch {
       // Start fresh
     }

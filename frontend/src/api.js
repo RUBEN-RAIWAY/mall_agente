@@ -18,6 +18,12 @@ export async function fetchConversations(clientId) {
   return res.json()
 }
 
+export async function fetchConversationDetail(clientId, conversationId) {
+  const res = await fetch(`${API_BASE}/clients/${clientId}/conversations/${conversationId}`)
+  if (!res.ok) throw new Error('Failed to fetch conversation')
+  return res.json()
+}
+
 export async function deleteConversation(clientId, conversationId) {
   const res = await fetch(
     `${API_BASE}/clients/${clientId}/conversations/${conversationId}`,
