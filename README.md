@@ -1,15 +1,27 @@
-# Asistente Centro comercial Bot - Asistente de para Mall para clientes Personalizado
+# Centro Comercial Bot
 
-Aplicación completa (FastAPI + React) que funciona buscando entender al cliente con un perfil 360 grados en un centro comercial, que tiene restaurantes, bancos,tiendas, almacenes, discotecas, cines y demas con una gran variede de ofertas. El agente conversa con clientes, recuerda sus conversaciones previas, conoce sus gustos y descripcion de ellos, trata de entenderlos a fin. de generar nuevas oportunidades de ventas de servicios.
+Aplicación completa (FastAPI + React) que actúa como asistente inteligente personalizado para clientes de un centro comercial. El agente conversa con cada cliente, recuerda sus conversaciones previas, conoce sus gustos y perfil completo, y genera recomendaciones de servicios, tiendas, restaurantes, cines, discotecas y más — con búsqueda en tiempo real.
 
-## Stack
+## Demo en producción
 
-- **Backend:** FastAPI + LangChain + OpenAI (gpt-4.1) + Tavily + Firebase Firestore
-- **Frontend:** React + Vite + Tailwind CSS
-- **Persistencia:** Firebase Firestore
-- **Streaming:** Server-Sent Events (SSE)
+| Servicio | URL |
+|---|---|
+| Frontend | https://mallbot-production.up.railway.app |
+| Backend API | https://mallagente-production.up.railway.app |
+| API Docs | https://mallagente-production.up.railway.app/docs |
 
-## Requisitos previos
+## Stack tecnológico
+
+| Capa | Tecnología |
+|---|---|
+| Backend | FastAPI + LangChain + OpenAI GPT-4.1 |
+| Búsqueda en tiempo real | Tavily Search API |
+| Persistencia | Firebase Firestore |
+| Streaming | Server-Sent Events (SSE) |
+| Frontend | React 19 + Vite + Tailwind CSS |
+| Deploy | Railway (Docker) |
+
+## Requisitos previos (desarrollo local)
 
 - Python 3.11+
 - Node.js 18+
@@ -19,83 +31,127 @@ Aplicación completa (FastAPI + React) que funciona buscando entender al cliente
 ## Configurar Firebase
 
 1. Ve a [Firebase Console](https://console.firebase.google.com/)
-2. Crea un nuevo proyecto (o usa uno existente)
+2. Crea o selecciona un proyecto
 3. Habilita **Cloud Firestore** en modo nativo
-4. Ve a **Project Settings > Service accounts**
-5. Genera una nueva clave privada (JSON)
-6. Guarda el archivo como `firebase-service-account.json` en la carpeta `backend/`
+4. Ve a **Project Settings > Service accounts > Generate new private key**
+5. Guarda el JSON como `backend/firebase-service-account.json`
 
-### Crear indices en Firestore
+### Índice compuesto requerido
 
-El proyecto usa una query compuesta en la coleccion `conversations`. Crea este indice:
+Colección `conversations` con los campos:
 
-- Coleccion: `conversations`
-- Campos: `client_id` (Ascending), `updated_at` (Descending)
+| Campo | Orden |
+|---|---|
+| `client_id` | Ascending |
+| `updated_at` | Descending |
 
-Puedes crearlo desde la consola de Firebase o se creara automaticamente al ejecutar la primera query (Firebase te dara un link en los logs).
+Se crea automáticamente al ejecutar la primera query (Firebase muestra el enlace en los logs).
 
 ## Setup Backend
 
 ```bash
 cd backend
 
-# Crear entorno virtual
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate        # Windows: venv\Scripts\activate
 
-# Instalar dependencias
 pip install -r requirements.txt
 
-# Configurar variables de entorno
+# Crear archivo de variables de entorno
 cp .env.example .env
-# Editar .env con tus API keys y configuracion de Firebase
+# Editar .env con tus claves
 
-# Cargar datos iniciales
+# Cargar clientes de prueba
 python seed.py
 
-# Para limpiar y recargar:
-# python seed.py --clean
+# Limpiar y recargar
+python seed.py --clean
 
 # Iniciar servidor
 uvicorn main:app --reload --port 8000
 ```
 
-El backend estara disponible en `http://localhost:8000`. Documentacion en `http://localhost:8000/docs`.
+Backend disponible en `http://localhost:8000` · Docs en `http://localhost:8000/docs`
 
 ## Setup Frontend
 
 ```bash
 cd frontend
-
-# Instalar dependencias
 npm install
-
-# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-El frontend estara disponible en `http://localhost:5173`. El proxy de Vite redirige las llamadas `/api/*` al backend.
+Frontend disponible en `http://localhost:5173`. El proxy de Vite redirige `/api/*` al backend local.
 
-## Uso
+## Variables de entorno
 
-1. Abre `http://localhost:5173` en tu navegador
-2. Selecciona un cliente de la lista
-3. Comienza a chatear - el agente personalizara sus respuestas segun el perfil del cliente
-4. Usa el sidebar para navegar entre conversaciones previas o crear nuevas
-5. El agente buscara estrenos automaticamente cuando preguntes por contenido nuevo
+### Backend — `backend/.env`
+
+```env
+OPENAI_API_KEY=sk-...
+TAVILY_API_KEY=tvly-...
+FIREBASE_PROJECT_ID=tu-proyecto
+GOOGLE_APPLICATION_CREDENTIALS=./firebase-service-account.json
+
+# Solo en producción (reemplaza al archivo JSON)
+FIREBASE_SERVICE_ACCOUNT_JSON={"type":"service_account",...}
+
+# CORS (separar con comas)
+ALLOWED_ORIGINS=http://localhost:5173,https://tu-frontend.up.railway.app
+```
+
+### Frontend — variable de build
+
+```env
+VITE_API_URL=https://tu-backend.up.railway.app   # solo producción
+```
+
+En desarrollo local no se necesita — Vite hace el proxy automáticamente.
 
 ## Endpoints del API
 
-| Metodo | Ruta | Descripcion |
-|--------|------|-------------|
+| Método | Ruta | Descripción |
+|---|---|---|
 | GET | `/health` | Health check |
-| POST | `/tools/search` | Busqueda directa con Tavily |
 | GET | `/clients` | Lista de clientes |
-| GET | `/clients/{id}` | Perfil completo |
-| GET | `/clients/{id}/conversations` | Lista de conversaciones |
-| GET | `/clients/{id}/conversations/{cid}` | Detalle de conversacion |
-| DELETE | `/clients/{id}/conversations/{cid}` | Eliminar conversacion |
-| POST | `/agent/chat` | Chat sincronico |
-| GET | `/agent/stream` | Chat con SSE streaming |
+| GET | `/clients/{id}` | Perfil completo del cliente |
+| GET | `/clients/{id}/conversations` | Historial de conversaciones |
+| GET | `/clients/{id}/conversations/{cid}` | Detalle de una conversación |
+| DELETE | `/clients/{id}/conversations/{cid}` | Eliminar conversación |
+| POST | `/agent/chat` | Chat síncrono |
+| GET | `/agent/stream` | Chat con streaming SSE |
+| POST | `/tools/search` | Búsqueda directa con Tavily |
+
+## Deploy en Railway
+
+El proyecto incluye un `Dockerfile` en la raíz para el backend y `railway.toml` para configuración de healthcheck.
+
+Variables requeridas en Railway:
+
+**Backend:**
+```
+OPENAI_API_KEY
+TAVILY_API_KEY
+FIREBASE_PROJECT_ID
+FIREBASE_SERVICE_ACCOUNT_JSON   ← contenido del JSON en una línea
+ALLOWED_ORIGINS                 ← URL del frontend en Railway
+PORT=8000
+```
+
+**Frontend:**
+```
+VITE_API_URL   ← URL del backend en Railway
+```
 
 ## Clientes de prueba
+
+| ID | Nombre | Perfil |
+|---|---|---|
+| client_001 | Carlos Alberto Pérez Gómez | Masculino · Ropa deportiva, Cine, Discotecas |
+| client_002 | María Fernanda López Silva | Femenino · Ropa casual, Supermercado, Hogar |
+| client_003 | Jorge Luis Ramírez Vargas | Masculino · Tecnología, Zapatillas, Fast Food |
+| client_004 | Lucía Mendiola Castillo | Femenino · Ropa elegante, Joyería, Cafeterías |
+| client_005 | Roberto Carlos Fernández Ruiz | Masculino · Ferretería, Bancos, Ropa de vestir |
+| client_006 | Camila Andrea Torres Mendoza | Femenino · Maquillaje, Discotecas, Accesorios |
+
+Ver perfil completo de cada cliente en `backend/data/seed_clients.json`.
